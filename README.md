@@ -35,12 +35,21 @@ jobs:
           # project-id is of the form 'project-XXX' and folder starts with '/'
           destination: '<project-id>:<folder>'
           api_token: '${{ secrets.API_TOKEN }}'
+      - id: 'print'
+        name: 'Print workflow'
+        shell: 'bash'
+        run: |
+          echo "Workflow ID: ${{ steps.compile.outputs.workflow_id }}"
 ```
 
-## Warning
+In this workflow, the compiled Workflow ID can be seen under the 'Print Workflow' Step in the output:
 
-This action always uses the latest version of dxWDL. If you want to use a specific verison of dxWDL to build your workflow, you'll need to clone this action and modify the [Dockerfile](Dockerfile) to specify a specific tag or digest in the `FROM` line, e.g.
+![](assets/screenshot.png)
 
-```Dockerfile
-FROM dnanexus/dxwdl@sha256:b475c64898626c681ac81496fe287d9f822f9d27eea448793dfe04f5eca77280
-```
+## Warnings
+
+* This action always uses the latest version of dxWDL. If you want to use a specific verison of dxWDL to build your workflow, you'll need to clone this action and modify the [Dockerfile](Dockerfile) to specify a specific tag or digest in the `FROM` line, e.g.
+    ```Dockerfile
+    FROM dnanexus/dxwdl@sha256:b475c64898626c681ac81496fe287d9f822f9d27eea448793dfe04f5eca77280
+    ```
+* If you are not an ADMIN of the project's billTo organization, dxWDL will not be able to retrieve the instance pricing list it needs to optimize the choice of instance types. Your workflow will still compile, but it might be more expensive to run than it would if dxWDL were able to obtain the price list.

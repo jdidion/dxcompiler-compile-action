@@ -23,3 +23,8 @@ jobs:
           wdl: 'hello.wdl'
           destination: 'project-XXX:/'
           api_token: '${{ secrets.API_TOKEN }}'
+      - id: 'print'
+        name: 'Print workflow'
+        shell: 'bash'
+        run: |
+          echo "Workflow ID: ${{ steps.compile.outputs.workflow_id }}"
