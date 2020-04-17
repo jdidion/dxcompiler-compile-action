@@ -56,3 +56,6 @@ runs:
     DX_APISERVER_PROTOCOL: ${{ inputs.apiserver_protocol }}
     DX_APISERVER_HOST: ${{ inputs.apiserver_host }}
     DX_APISERVER_PORT: ${{ inputs.apiserver_port }}
+branding:
+  color: blue
+  icon: upload-cloud
