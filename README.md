@@ -4,7 +4,7 @@ This [GitHub Action](https://help.github.com/en/actions) compiles a WDL workflow
 
 1. Create a GitHub repository containing your WDL workflow file in the root folder.
 2. You may also have an [extras.json](https://github.com/dnanexus/dxWDL/blob/master/doc/ExpertOptions.md#setting-dnanexus-specific-attributes-in-extrasjson) file in the root folder - it will be detected automatically.
-3. Add a [secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) in your repository with the name "API_TOKEN" and the value being a [DNAnexus API token](https://documentation.dnanexus.com/developer/api/authentication) that is configured with CONTRIBUTE access to the project in which you want to deploy your workflows/applets.
+3. Add a [secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) in your repository with the name "API_TOKEN" and the value being a [DNAnexus API token](https://documentation.dnanexus.com/developer/api/authentication) that is configured with CONTRIBUTE access to the project in which you want to deploy your workflows/applets. You may use a different name for the secret, but you then need to change it in the workflow file as well.
 4. Create a new workflow in .github/workflows (see the [example](#example)) and configure the action.
 
 ## Example
