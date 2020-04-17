@@ -1,0 +1,58 @@
+name: 'dxWDL compile'
+author: 'DNAnexus'
+description: 'Compile a WDL workflow with dxWDL'
+inputs:
+  wdl:
+    description: 'The main WDL file'
+    required: true
+  destination:
+    description: 'Destination project and folder'
+    required: true
+  archive:
+    description: 'Archive existing workflows/applets (otherwise they are overwritten)'
+    required: true
+    default: 'true'
+  locked:
+    description: 'Create a locked workflow'
+    required: true
+    default: 'false'
+  streamAllFiles:
+    description: 'Mount all files with dxfuse - do not use the download agent'
+    required: true
+    default: 'true'
+  api_token:
+    description: 'DNAnexus API token'
+    required: true
+  apiserver_protocol:
+    description: 'DNAnexus API server protocol'
+    required: true
+    default: 'https'
+  apiserver_host:
+    description: 'DNAnexus API server hostname'
+    required: true
+    default: 'api.dnanexus.com'
+  apiserver_port:
+    description: 'DNAnexus API server port'
+    required: true
+    default: '443'
+outputs:
+  workflow_id:
+    description: "The ID of the compiled workflow"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.wdl }}
+    - '-destination'
+    - ${{ inputs.destination }}
+    - '-archive'
+    - ${{ inputs.archive }}
+    - '-locked'
+    - ${{ inputs.locked }}
+    - '-streamAllFiles'
+    - ${{ inputs.streamAllFiles }}
+  env:
+    DX_SECURITY_CONTEXT: '{"auth_token": "${{ inputs.api_token }}", "auth_token_type": "bearer"}'
+    DX_APISERVER_PROTOCOL: ${{ inputs.apiserver_protocol }}
+    DX_APISERVER_HOST: ${{ inputs.apiserver_host }}
+    DX_APISERVER_PORT: ${{ inputs.apiserver_port }}

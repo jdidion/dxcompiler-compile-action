@@ -1,0 +1,25 @@
+name: 'Master Workflow'
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    name: 'Build Workflow'
+    runs-on: 'ubuntu-18.04'
+    outputs:
+      workflow_id: ${{ steps.compile.workflow_id }}
+    steps:
+      - name: 'Checkout repository'
+        uses: 'actions/checkout@v2'
+      - id: 'compile'
+        name: 'Compile hello.wdl'
+        uses: 'jdidion/dxwdl-compile-action@v1'
+        with:
+          wdl: 'hello.wdl'
+          destination: 'project-XXX:/'
+          api_token: '${{ secrets.API_TOKEN }}'
