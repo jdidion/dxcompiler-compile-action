@@ -1,7 +1,7 @@
 #!/bin/bash
 set -uex
 
-CMD="java -jar /dxWDL.jar compile $1"
+CMD="java -jar /dxCompiler.jar compile $1"
 shift 1
 
 while (( "$#" )); do
