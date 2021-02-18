@@ -29,7 +29,7 @@ jobs:
         uses: 'actions/checkout@v2'
       - id: 'compile'
         name: 'Compile hello.wdl'
-        uses: 'jdidion/dxcompiler-compile-action@v1'
+        uses: 'jdidion/dxcompiler-compile-action@v2'
         with:
           wdl: 'hello.wdl'
           # project-id is of the form 'project-XXX' and folder starts with '/'
