@@ -1,6 +1,6 @@
-name: 'dxWDL compile'
+name: 'dxCompiler compile'
 author: 'DNAnexus'
-description: 'Compile a WDL workflow with dxWDL'
+description: 'Compile a WDL workflow with dxCompiler'
 inputs:
   wdl:
     description: 'The main WDL file'
